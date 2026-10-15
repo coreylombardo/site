@@ -7,13 +7,13 @@ export default function Directory() {
     if (location.pathname === "/") {
         return (
             <span className="directory">
-                <Link to="/">{window.location.host}</Link> → /
+                <Link to="/">lombardo.lol</Link> → /
             </span>
         );
     } else {
         return (
             <span className="directory">
-                <Link to="/">{window.location.host}</Link> → <Link to={location.pathname}>{location.pathname}</Link>
+                <Link to="/">lombardo.lol</Link> → <Link to={location.pathname}>{location.pathname}</Link>
             </span>
         );
     }

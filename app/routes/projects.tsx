@@ -1,4 +1,4 @@
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/projects";
 import Nt from "../components/nt";
 
 export function meta({}: Route.MetaArgs) {
