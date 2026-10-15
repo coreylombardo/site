@@ -8,5 +8,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Blog() {
-    return <span>Blog has not been implemented yet. Please return when I implement an epic backend.</span>
+    return <span>Blog has not been implemented yet. Please return when [THE WORLD ENDS]</span>
 }
