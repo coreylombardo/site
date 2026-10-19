@@ -13,7 +13,7 @@ export async function loader() {
     const posts = await getAllPosts();
 
     return posts
-        .map(({ number, title }) => ({ number, title }))
+        .map(({ number, title, date }) => ({ number, title, date }))
         .sort((a, b) => b.number - a.number);
 }
 

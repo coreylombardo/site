@@ -9,10 +9,11 @@ const files = import.meta.glob("/content/posts/*.md", {
 export async function getAllPosts() {
     return Object.values(files).map((raw => {
         const { data, content } = matter(raw);
-        
+
         return {
             number: data.number as number,
             title: data.title as string,
+            date: data.date as Date,
             content,
         };
     }));
