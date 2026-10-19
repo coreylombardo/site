@@ -1,22 +1,29 @@
-// this is gonna show some shit like coreylombardo -> Home
+import { Fragment } from "react";
 import { useLocation, Link } from "react-router";
 
 export default function Directory() {
-    const location = useLocation();
+    const { pathname } = useLocation();
+    const segments = pathname.split("/").filter(Boolean);
 
-    if (location.pathname === "/") {
-        return (
-            <span className="directory">
-                <Link to="/">lombardo.lol</Link> → /
-            </span>
-        );
-    } else {
-        return (
-            <span className="directory">
-                <Link to="/">lombardo.lol</Link> → <Link to={location.pathname}>{location.pathname}</Link>
-            </span>
-        );
-    }
+    return (
+        <span className="directory">
+            <Link to="/">lombardo.lol</Link>
+            {segments.length === 0 && " → /"}
+            {segments.map((segment, i) => {
+                const to = "/" + segments.slice(0, i + 1).join("/");
+                const isLast = i === segments.length - 1;
+
+                return (
+                    <Fragment key={to}>
+                        {" → "}
+                        {isLast ? (
+                            <span>/{segment}</span>
+                        ) : (
+                            <Link to={to}>/{segment}</Link>
+                        )}
+                    </Fragment>
+                );
+            })}
+        </span>
+    );
 }
-
-// need to track "degree" of route so that it can make clickable links for degree - 1 

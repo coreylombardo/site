@@ -1,4 +1,6 @@
 import type { Route } from "./+types/blog";
+import { getAllPosts } from "../lib/posts.server"
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -7,6 +9,26 @@ export function meta({}: Route.MetaArgs) {
     ];
 }
 
-export default function Blog() {
-    return <span>Blog has not been implemented yet. Please return when I implement an epic backend.</span>
+export async function loader() {
+    const posts = await getAllPosts();
+
+    return posts
+        .map(({ number, title }) => ({ number, title }))
+        .sort((a, b) => b.number - a.number);
+}
+
+export default function Blog({ loaderData }: Route.ComponentProps) {
+    return (
+        <div className="postslist">
+            <ul>
+                {loaderData.map((post => (
+                    <li key={post.number}>
+                        <Link to={`/blog/${post.number}`}>
+                            #{post.number}: {post.title}
+                        </Link>
+                    </li>
+                )))}
+            </ul>
+        </div>
+    );
 }
