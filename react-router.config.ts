@@ -1,6 +1,5 @@
 import type { Config } from "@react-router/dev/config";
-import { getAllPosts } from "./app/lib/posts.server";
-import matter from "gray-matter";
+import { readdir, readFile } from "node:fs/promises";
 
 export default {
   // Config options...
@@ -8,11 +7,19 @@ export default {
   ssr: false,
   
   async prerender({ getStaticPaths }) {
-    const posts = await getAllPosts();
+    const files = (await readdir("./content/posts")).filter((f) =>
+      f.endsWith(".md")
+    );
+
+    const numbers = await Promise.all(
+      files.map(async (f) => {
+        const raw = await readFile(`./content/posts/${f}`, "utf-8");
+      })
+    );
 
     return [
       ...getStaticPaths(),
-      ...posts.map((p) => `/blog/${p.number}`)
+      ...numbers.map((n) => `/blog/${n}`)
     ];
   }
 } satisfies Config;
