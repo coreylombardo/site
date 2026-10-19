@@ -14,6 +14,7 @@ export default function Directory() {
                 const isLast = i === segments.length - 1;
 
                 return (
+                    // isLast: the last link in the breadcrumb (current page) wont be clickable
                     <Fragment key={to}>
                         {" → "}
                         {isLast ? (
