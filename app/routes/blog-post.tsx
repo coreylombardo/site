@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { getPost } from "../lib/posts.server";
 
 export async function loader({ params }: Route.LoaderArgs) {
-    const post = await getPost(params.number);
+    const post = await getPost(params.slug);
     if (!post) throw data(null, { status: 404 });
 
     return { title: post.title, content: post.content };

@@ -1,4 +1,5 @@
 import matter from "gray-matter";
+import { toSlug } from "./slug";
 
 const files = import.meta.glob("/content/posts/*.md", {
     query: "?raw",
@@ -19,8 +20,8 @@ export async function getAllPosts() {
     }));
 }
 
-export async function getPost(number: string) {
+export async function getPost(slug: string) {
     const posts = await getAllPosts();
 
-    return posts.find((post) => String(post.number) === number);
+    return posts.find((post) => String(toSlug(post.title)) === slug);
 }

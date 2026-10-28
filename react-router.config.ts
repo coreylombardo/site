@@ -1,6 +1,7 @@
 import type { Config } from "@react-router/dev/config";
 import { readdir, readFile } from "node:fs/promises";
 import matter from "gray-matter";
+import { toSlug } from "./app/lib/slug";
 
 export default {
   // Config options...
@@ -12,24 +13,22 @@ export default {
       f.endsWith(".md")
     );
 
-    const numbers = await Promise.all(
+    const slugs = await Promise.all(
       files.map(async (f) => {
         const raw = await readFile(`./content/posts/${f}`, "utf-8");
+        const { title } = matter(raw).data;
 
-        // error check because idk why cloudflare hates me, can delete later maybe
-        const { number } = matter(raw).data;
-
-        if (typeof number !== "number") {
-          throw new Error(`${f} is missing a numeric "number" in its frontmatter`);
+        if (typeof title !== "string") {
+          throw new Error(`${f} is missing a "title" in its frontmatter`);
         }
 
-        return number;
+        return toSlug(title);
       })
     );
 
     return [
       ...getStaticPaths(),
-      ...numbers.map((n) => `/blog/${n}`)
+      ...slugs.map((s) => `/blog/${s}`)
     ];
   }
 } satisfies Config;

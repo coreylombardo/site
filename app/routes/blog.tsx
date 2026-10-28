@@ -1,6 +1,7 @@
 import type { Route } from "./+types/blog";
 import { getAllPosts } from "../lib/posts.server"
 import { Link } from "react-router";
+import { toSlug } from "../lib/slug";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -23,7 +24,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
             <ul>
                 {loaderData.map((post => (
                     <li key={post.number}>
-                        <Link to={`/blog/${post.number}`}>
+                        <Link to={`/blog/${toSlug(post.title)}`}>
                             #{post.number}: {post.title}
                         </Link>
                     </li>
