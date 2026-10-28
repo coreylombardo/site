@@ -3,6 +3,12 @@ import { data } from "react-router";
 import ReactMarkdown from "react-markdown";
 import { getPost } from "../lib/posts.server";
 
+export function meta({ loaderData }: Route.MetaArgs) {
+  return [
+    { title: loaderData.title },
+  ];
+}
+
 export async function loader({ params }: Route.LoaderArgs) {
     const post = await getPost(params.slug);
     if (!post) throw data(null, { status: 404 });
