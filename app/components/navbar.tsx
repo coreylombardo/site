@@ -9,19 +9,19 @@ const Navbar = () => {
                 <li>
                     <Link to="/">
                         <Icon icon="mdi:home-outline" className="navbar-icon" />
-                        home
+                        <span className="navbar-label">home</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/projects">
                         <Icon icon="mdi:file-document-outline" className="navbar-icon" />
-                        projects
+                        <span className="navbar-label">projects</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/blog">
                         <Icon icon="mdi:thought-bubble-outline" className="navbar-icon" />
-                        blog
+                        <span className="navbar-label">blog</span>
                     </Link>
                 </li>
             </ul>

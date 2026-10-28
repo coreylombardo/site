@@ -133,3 +133,21 @@ ul li a:hover {
 ul li a:active {
   background: #D9D2D2;
 }
+
+@media (max-width: 920px) {
+  .sidenav {
+    ul li a {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .navbar-icon {
+      margin-right: 0px;
+    }
+
+    .navbar-label {
+      display: none;
+    }
+  }
+}
