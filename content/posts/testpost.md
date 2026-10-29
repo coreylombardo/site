@@ -1,5 +1,5 @@
 ---
-number: 1
+number: 0
 title: what's this?
 date: '2026-10-15'
 ---
