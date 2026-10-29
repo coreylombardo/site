@@ -15,14 +15,30 @@ body {
 
   background: #f9f1f1;
   color: #202020;
+
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* overflow-x: hidden; */
 }
 
 #container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18vw 1fr;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   justify-content: flex-start;
 }
 
 #content {
+  /* make the content start where the sidebar ends, dynamic */
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+
+  padding: 5vh 5vw;
+
   #directory {
     font-size: 28px;
     margin-bottom: 5vh;
@@ -67,17 +83,16 @@ body {
   a:active {
     background: #D9D2D2;
   }
-
-  margin: 5vh 5vw;
 }
 
 .sidenav {
   float: left;
   width: 18vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   background:  	#F9F1F1;
   background: linear-gradient(90deg,rgba(249, 241, 241, 1) 0%, rgba(249, 241, 241, 1) 80%, rgba(176, 176, 176, 1) 100%);
-  position: relative;
+  position: fixed;
   padding: 10px 10px;
 
   .navbar-icon {
