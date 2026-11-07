@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "add-post": "tsx scripts/add-post.ts",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
@@ -29,6 +30,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "tailwindcss": "^4.2.2",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "vite": "^8.0.3"
   }
